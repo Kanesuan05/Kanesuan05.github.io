@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#0F172A">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%92%BB%3C/text%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%236366F1'/%3E%3Cstop offset='1' stop-color='%2310B981'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='%230F172A'/%3E%3Cg stroke='url(%23g)' stroke-width='4' stroke-linecap='round' fill='none'%3E%3Crect x='18' y='18' width='28' height='28' rx='5'/%3E%3Cpath d='M26 9v9M38 9v9M26 46v9M38 46v9M9 26h9M9 38h9M46 26h9M46 38h9'/%3E%3C/g%3E%3Crect x='26' y='26' width='12' height='12' rx='2.5' fill='url(%23g)'/%3E%3C/svg%3E">
 <meta name="author" content="Kanesuan Chomking">
 
 <meta property="og:site_name" content="Kanesuan Chomking">
@@ -33,6 +33,7 @@
   --nav-bg:rgba(15,23,42,.72); --nav-solid:rgba(15,23,42,.92); --menu-bg:rgba(15,23,42,.98);
   --chip:#C7D2FE; --chip-bg:rgba(79,70,229,.16); --ghost-bg:rgba(255,255,255,.02);
   --glow:rgba(79,70,229,.28); --glow-2:rgba(79,70,229,.14); --card-shadow:rgba(79,70,229,.55);
+  --neon-1:rgba(129,140,248,.55); --neon-2:rgba(99,102,241,.4);
 }
 [data-theme="light"]{
   --bg-primary:#F8FAFC; --card-bg:#FFFFFF; --card-bg-hover:#F1F5F9; --border:#E2E8F0;
@@ -40,13 +41,17 @@
   --nav-bg:rgba(248,250,252,.78); --nav-solid:rgba(248,250,252,.94); --menu-bg:rgba(248,250,252,.98);
   --chip:#4338CA; --chip-bg:rgba(79,70,229,.1); --ghost-bg:rgba(15,23,42,.03);
   --glow:rgba(79,70,229,.14); --glow-2:rgba(79,70,229,.08); --card-shadow:rgba(79,70,229,.3);
+  --neon-1:rgba(79,70,229,.4); --neon-2:rgba(79,70,229,.28);
 }
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:var(--nav-h);scrollbar-width:thin;scrollbar-color:#6366f1 var(--sb-track)}
-::-webkit-scrollbar{width:10px;height:10px}
-::-webkit-scrollbar-track{background:var(--sb-track)}
-::-webkit-scrollbar-thumb{background:#6366f1;border-radius:999px;border:2px solid var(--sb-track)}
-::-webkit-scrollbar-thumb:hover{background:#818CF8}
+html{scroll-behavior:smooth;scroll-padding-top:var(--nav-h)}
+::-webkit-scrollbar{width:12px;height:12px}
+::-webkit-scrollbar-track{background:var(--sb-track);box-shadow:inset 1px 0 0 var(--border)}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#6366f1,#10b981);border-radius:999px;border:3px solid var(--sb-track);transition:background .2s}
+::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,#818cf8,#34d399)}
+::-webkit-scrollbar-thumb:active{background:linear-gradient(180deg,#4f46e5,#059669)}
+::-webkit-scrollbar-corner{background:var(--sb-track)}
+@supports not selector(::-webkit-scrollbar){html{scrollbar-width:thin;scrollbar-color:#6366f1 var(--sb-track)}}
 body{margin:0;background:var(--bg-primary);color:var(--text-primary);font-family:var(--sans);font-weight:400;line-height:1.7;-webkit-font-smoothing:antialiased}
 a{color:inherit;text-decoration:none}
 :focus-visible{outline:2px solid var(--accent-soft);outline-offset:3px;border-radius:4px}
@@ -107,8 +112,10 @@ h2{font-size:clamp(1.8rem,3.5vw,2.4rem);margin-bottom:.75rem}
 .actions{display:flex;flex-wrap:wrap;gap:.9rem}
 .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 1.5rem;border-radius:10px;font-weight:600;font-size:.95rem;border:1px solid transparent;transition:transform .2s,background .2s,border-color .2s,box-shadow .2s}
 .btn-primary{background:var(--accent);color:#fff;box-shadow:0 8px 24px -8px rgba(79,70,229,.7)}
-.btn-primary:hover{background:#5B52F0;transform:translateY(-2px)}
-.btn-ghost{border-color:var(--border);background:var(--ghost-bg)}
+.btn-primary:hover{background:#5B52F0;transform:translateY(-2px);box-shadow:0 0 0 1px var(--neon-1),0 0 18px var(--neon-1),0 0 40px -2px var(--neon-2)}
+.btn-ghost{border-color:var(--border);background:var(--ghost-bg);color:var(--text-primary)}
+button.btn{font-family:inherit;line-height:inherit;cursor:pointer}
+.btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .btn-outline{border-color:var(--accent-soft);color:var(--accent-soft);background:transparent}
 .btn-outline svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .btn-outline:hover{background:var(--accent);border-color:var(--accent);color:#fff;transform:translateY(-2px);box-shadow:0 10px 26px -10px rgba(79,70,229,.8)}
@@ -147,7 +154,7 @@ h2{font-size:clamp(1.8rem,3.5vw,2.4rem);margin-bottom:.75rem}
 /* Skills */
 .skills{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
 .skill{position:relative;overflow:hidden;background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:1.2rem 1.25rem;display:flex;align-items:center;gap:.85rem;font-weight:600;transition:transform .25s,border-color .25s,background .25s,box-shadow .25s}
-.skill:hover{transform:translateY(-4px);border-color:var(--accent);background:var(--card-bg-hover);box-shadow:0 14px 30px -14px var(--card-shadow),0 0 22px -6px var(--glow)}
+.skill:hover{transform:translateY(-4px);border-color:var(--accent-soft);background:var(--card-bg-hover);box-shadow:0 0 0 1px var(--neon-2),0 0 16px var(--neon-2),0 0 34px -6px var(--neon-1)}
 .skill svg{transition:transform .25s}
 .skill:hover svg{transform:scale(1.15)}
 .card::after,.skill::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(240px circle at var(--mx,50%) var(--my,50%),var(--glow),transparent 70%)}
@@ -159,7 +166,7 @@ h2{font-size:clamp(1.8rem,3.5vw,2.4rem);margin-bottom:.75rem}
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
 .card{position:relative;background:linear-gradient(160deg,var(--card-bg-hover),var(--card-bg));border:1px solid var(--border);border-radius:18px;padding:2rem;display:flex;flex-direction:column;overflow:hidden;transition:transform .3s,border-color .3s,box-shadow .3s}
 .card::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent-soft));transform:scaleX(0);transform-origin:left;transition:transform .4s}
-.card:hover{transform:translateY(-6px);border-color:var(--accent);box-shadow:0 20px 44px -18px var(--card-shadow),0 0 28px -6px var(--glow)}
+.card:hover{transform:translateY(-6px);border-color:var(--accent-soft);box-shadow:0 0 0 1px var(--neon-2),0 0 18px var(--neon-2),0 0 44px -4px var(--neon-1),0 24px 44px -24px var(--card-shadow)}
 .card:hover::before{transform:scaleX(1)}
 .icon{width:48px;height:48px;border-radius:12px;background:rgba(79,70,229,.18);display:grid;place-items:center;margin-bottom:1.4rem}
 .icon svg{width:24px;height:24px;stroke:var(--accent-soft);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
@@ -169,6 +176,16 @@ h2{font-size:clamp(1.8rem,3.5vw,2.4rem);margin-bottom:.75rem}
 .tags span{font-size:.78rem;padding:.25rem .65rem;border-radius:999px;background:var(--chip-bg);color:var(--chip);font-weight:500}
 .card a.link{font-weight:600;color:var(--accent-soft);display:inline-flex;gap:.4rem;align-items:center}
 .card a.link:hover{color:var(--text-primary)}
+
+/* Certifications */
+.cert .issuer{flex:none;margin:0 0 1rem;color:var(--accent-soft);font-weight:600;font-size:.92rem}
+.cert .cert-meta{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem;padding-top:1.1rem;border-top:1px solid var(--border);color:var(--text-secondary);font-size:.86rem}
+.copy-chip{display:inline-flex;align-items:center;gap:.45rem;padding:.35rem .7rem;border-radius:8px;border:1px solid var(--border);background:var(--ghost-bg);color:var(--text-primary);font-family:var(--mono);font-size:.78rem;cursor:pointer;transition:border-color .2s,color .2s,box-shadow .2s}
+.copy-chip:hover{border-color:var(--accent-soft);color:var(--accent-soft);box-shadow:0 0 14px -2px var(--neon-2)}
+.copy-chip svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.contact-mail{margin:1.75rem 0 0;color:var(--text-secondary);font-size:.92rem}
+.contact-mail a{color:var(--accent-soft);font-weight:500}
+.contact-mail a:hover{text-decoration:underline}
 
 /* Testimonials */
 .quote .mark{font-size:3.2rem;line-height:.8;height:1.6rem;color:var(--accent-soft);font-weight:700;margin-bottom:1rem}
@@ -188,6 +205,8 @@ footer{padding:2rem 0 2.5rem;text-align:center;color:var(--text-secondary);font-
 /* Toast + Back to top */
 .toast{position:fixed;right:1.5rem;bottom:5.5rem;z-index:200;max-width:calc(100% - 3rem);background:var(--card-bg-hover);color:var(--text-primary);border:1px solid var(--border);border-left:3px solid var(--accent);padding:.75rem 1.1rem;border-radius:12px;box-shadow:0 14px 34px -12px rgba(0,0,0,.5);font-size:.92rem;font-weight:500;opacity:0;visibility:hidden;transform:translateY(12px);pointer-events:none;transition:opacity .3s,transform .3s,visibility .3s}
 .toast.show{opacity:1;visibility:visible;transform:none}
+.toast strong{display:block;font-weight:600}
+.toast span{display:block;margin-top:.1rem;color:var(--text-secondary);font-size:.82rem;font-weight:400;word-break:break-all}
 .to-top{position:fixed;right:1.5rem;bottom:1.5rem;z-index:150;width:48px;height:48px;border-radius:50%;border:0;background:var(--accent);color:#fff;cursor:pointer;display:grid;place-items:center;box-shadow:0 10px 24px -8px rgba(79,70,229,.75);opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .3s,transform .3s,visibility .3s,background .2s}
 .to-top svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 .to-top.show{opacity:1;visibility:visible;transform:none}
@@ -407,6 +426,37 @@ html.theme-anim *,html.theme-anim *::before,html.theme-anim *::after{transition:
     </div>
   </section>
 
+  <section id="certifications">
+    <div class="container reveal">
+      <h2>Certifications &amp; Workshop Activities</h2>
+      <p class="lead">Courses and hands-on workshops that keep my hardware and software skills sharp.</p>
+      <!-- Sample entries: replace titles, dates and credential IDs with your real ones -->
+      <div class="cards">
+        <article class="card cert">
+          <div class="icon"><svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="1.5"/><rect x="9.5" y="9.5" width="5" height="5"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg></div>
+          <h3>Computer Hardware &amp; PC Assembly Workshop</h3>
+          <p class="issuer">Kasetsart University</p>
+          <p>Hands-on session on component selection, assembly and BIOS-level troubleshooting.</p>
+          <div class="cert-meta"><span>Issued Jun 2025</span><button class="copy-chip" type="button" data-copy="KU-HW-2025-014" aria-label="Copy credential ID KU-HW-2025-014">KU-HW-2025-014 <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button></div>
+        </article>
+        <article class="card cert">
+          <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div>
+          <h3>Networking Basics</h3>
+          <p class="issuer">Cisco Networking Academy</p>
+          <p>Core networking concepts, IP addressing and basic device configuration.</p>
+          <div class="cert-meta"><span>Issued Nov 2025</span><button class="copy-chip" type="button" data-copy="CNA-NB-58214" aria-label="Copy credential ID CNA-NB-58214">CNA-NB-58214 <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button></div>
+        </article>
+        <article class="card cert">
+          <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 22l5-3 5 3-1.5-8"/></svg></div>
+          <h3>Google IT Support Certificate</h3>
+          <p class="issuer">Google (Coursera)</p>
+          <p>Troubleshooting, customer support and the fundamentals of operating systems and hardware.</p>
+          <div class="cert-meta"><span>Issued Mar 2026</span><button class="copy-chip" type="button" data-copy="GIT-7Q2M-X9" aria-label="Copy credential ID GIT-7Q2M-X9">GIT-7Q2M-X9 <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/></svg></button></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section id="testimonials">
     <div class="container reveal">
       <h2>Testimonials</h2>
@@ -438,9 +488,11 @@ html.theme-anim *,html.theme-anim *::before,html.theme-anim *::after{transition:
         <h2>Let&rsquo;s work together</h2>
         <p class="lead">Have a project, an internship opportunity, or a build to talk through? Click the button to copy my email address.</p>
         <div class="actions">
-          <a class="btn btn-primary" id="copyEmail" href="mailto:kanesuan.c@ku.th" title="Click to copy email">kanesuan.c@ku.th</a>
+          <button class="btn btn-primary" type="button" data-copy="kanesuan.c@ku.th"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Copy Email</button>
+          <button class="btn btn-ghost" type="button" data-copy="page-link"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3A4 4 0 0 0 11 18.7l1-1"/></svg>Copy Link</button>
           <a class="btn btn-ghost" href="https://github.com/Kanesuan05" target="_blank" rel="noopener">GitHub: Kanesuan05</a>
         </div>
+        <p class="contact-mail">kanesuan.c@ku.th &middot; <a href="mailto:kanesuan.c@ku.th">Send an email</a></p>
       </div>
     </div>
   </section>
@@ -550,11 +602,14 @@ html.theme-anim *,html.theme-anim *::before,html.theme-anim *::after{transition:
     counters.forEach(function(el){co.observe(el)});
   }
 
-  // Copy email + toast
-  var EMAIL='kanesuan.c@ku.th',toast=document.getElementById('toast'),toastTimer;
-  function showToast(msg){
-    toast.textContent=msg;toast.classList.add('show');
-    clearTimeout(toastTimer);toastTimer=setTimeout(function(){toast.classList.remove('show')},2600);
+  // Copy actions + toast
+  var toast=document.getElementById('toast'),toastTimer;
+  function showToast(title,detail){
+    toast.textContent='';
+    var t=document.createElement('strong');t.textContent=title;toast.appendChild(t);
+    if(detail){var d=document.createElement('span');d.textContent=detail;toast.appendChild(d)}
+    toast.classList.add('show');
+    clearTimeout(toastTimer);toastTimer=setTimeout(function(){toast.classList.remove('show')},2800);
   }
   function copyText(text){
     if(navigator.clipboard&&window.isSecureContext){return navigator.clipboard.writeText(text)}
@@ -567,9 +622,16 @@ html.theme-anim *,html.theme-anim *::before,html.theme-anim *::after{transition:
       ok?resolve():reject();
     });
   }
-  document.getElementById('copyEmail').addEventListener('click',function(e){
-    e.preventDefault();
-    copyText(EMAIL).then(function(){showToast('\uD83D\uDCCB Copied: '+EMAIL)},function(){window.location.href='mailto:'+EMAIL});
+  document.querySelectorAll('[data-copy]').forEach(function(btn){
+    btn.addEventListener('click',function(e){
+      e.preventDefault();
+      var value=btn.getAttribute('data-copy');
+      if(value==='page-link'){var c=document.querySelector('link[rel="canonical"]');value=c?c.href:window.location.href}
+      copyText(value).then(
+        function(){showToast('Copied to clipboard! \uD83D\uDCCB',value)},
+        function(){showToast('Could not copy automatically','Please copy manually: '+value)}
+      );
+    });
   });
 
   // Cursor-follow glow on cards
